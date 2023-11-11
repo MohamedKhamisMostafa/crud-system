@@ -18,11 +18,11 @@
         <div class="inputs">
             <input type="text" placeholder="title" id="title">
             <div class="price">
-                <input type="number" placeholder="price" id="price">
-                <input type="number" placeholder="taxes" id="taxes">
-                <input type="number" placeholder="ads" id="ads">
-                <input type="number" placeholder="discount" id="discount">
-                <small id="total">10000</small>
+                <input type="number" onkeyup="getTotal()" placeholder="price" id="price">
+                <input type="number" onkeyup="getTotal()" placeholder="taxes" id="taxes">
+                <input type="number" onkeyup="getTotal()" placeholder="ads" id="ads">
+                <input type="number" onkeyup="getTotal()" placeholder="discount" id="discount">
+                <small id="total"></small>
             </div>
             <input type="number" placeholder="count" id="count">
             <input type="text" placeholder="category" id="category">
