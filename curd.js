@@ -42,4 +42,17 @@
         console.log(dataProduct);
         // save localStorage
         localStorage.setItem('product',JSON.stringify(dataProduct))
+        clearData()
+    }
+
+    // clear inputs
+    function clearData() {
+        title.value = ''
+        price.value = ''
+        taxes.value = ''
+        ads.value = ''
+        discount.value = ''
+        total.innerHTML =''
+        count.value = ''
+        category.value = ''
     }
