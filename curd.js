@@ -40,5 +40,6 @@
         }
         dataProduct.push(newProduct)
         console.log(dataProduct);
+        // save localStorage
         localStorage.setItem('product',JSON.stringify(dataProduct))
     }
