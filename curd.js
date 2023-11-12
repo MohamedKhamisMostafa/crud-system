@@ -43,6 +43,7 @@
         // save localStorage
         localStorage.setItem('product',JSON.stringify(dataProduct))
         clearData()
+        showData()
     }
 
     // clear inputs
@@ -56,3 +57,26 @@
         count.value = ''
         category.value = ''
     }
+    // showData
+    function showData() {
+        let table ='';
+        for (let i = 0; i < dataProduct.length; i++) {
+            table+=`
+        <tr>
+            <td>${i}</td>
+            <td>${dataProduct[i].title}</td>
+            <td>${dataProduct[i].price}</td>
+            <td>${dataProduct[i].taxes}</td>
+            <td>${dataProduct[i].ads}</td>
+            <td>${dataProduct[i].discount}</td>
+            <td>${dataProduct[i].total}</td>
+            <td>${dataProduct[i].category}</td>
+            <td><button id="update">update</button></td>
+            <td><button id="delete">delete</button></td>
+        </tr>`
+        document.getElementById('tbody').innerHTML= table;
+            
+        }
+        
+    }
+    showData()
