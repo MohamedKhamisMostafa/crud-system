@@ -74,10 +74,15 @@
             <td><button id="update">update</button></td>
             <td><button onclick="deleteData(${i})" id="delete">delete</button></td>
         </tr>`
-        document.getElementById('tbody').innerHTML= table;
+
             
         }
-        
+        document.getElementById('tbody').innerHTML= table;
+        let deleteAllBtn = document.getElementById('deleteAllBtn')
+        if (dataProduct.length>0) {
+            deleteAllBtn.innerHTML='<button onclick="deleteAll()">Delete All</button>'
+            
+        }
     }
     showData()
     // delete
@@ -85,4 +90,10 @@
         dataProduct.splice(i,1)
         localStorage.product =JSON.stringify(dataProduct);
         showData()
+    }
+    // deleteAllBtn code
+    function deleteAll() {
+        localStorage.clear()
+        dataProduct.splice(0)
+        showData()   
     }

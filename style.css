@@ -80,3 +80,6 @@ th{
 th , td{
     padding: 5px;
 }
+#deleteAllBtn{
+    margin: 30px 0;
+}
