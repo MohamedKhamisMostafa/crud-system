@@ -72,7 +72,7 @@
             <td>${dataProduct[i].total}</td>
             <td>${dataProduct[i].category}</td>
             <td><button id="update">update</button></td>
-            <td><button id="delete">delete</button></td>
+            <td><button onclick="deleteData(${i})" id="delete">delete</button></td>
         </tr>`
         document.getElementById('tbody').innerHTML= table;
             
@@ -80,3 +80,9 @@
         
     }
     showData()
+    // delete
+    function deleteData(i){
+        dataProduct.splice(i,1)
+        localStorage.product =JSON.stringify(dataProduct);
+        showData()
+    }
