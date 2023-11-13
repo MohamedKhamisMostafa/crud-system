@@ -38,7 +38,21 @@
             count:count.value,
             category:category.value,
         }
-        dataProduct.push(newProduct)
+        // repeat 
+
+        if (newProduct.count>1) {
+            for (let i = 0; i < newProduct.count ; i++) {
+                dataProduct.push(newProduct);
+            }
+            
+        }else{
+            dataProduct.push(newProduct);
+        }
+
+
+
+
+
         console.log(dataProduct);
         // save localStorage
         localStorage.setItem('product',JSON.stringify(dataProduct))
