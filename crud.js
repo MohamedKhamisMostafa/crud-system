@@ -6,6 +6,8 @@
     let count = document.getElementById('count')
     let category = document.getElementById('category')
     let submit = document.getElementById('submit')
+    let mood='create';
+    let tmp;
 
     // get total
     function getTotal(){
@@ -38,17 +40,24 @@
             count:count.value,
             category:category.value,
         }
-        // repeat 
 
-        if (newProduct.count>1) {
-            for (let i = 0; i < newProduct.count ; i++) {
+        if (mood === 'create'){
+             // repeat 
+
+            if (newProduct.count>1) {
+                for (let i = 0; i < newProduct.count ; i++) {
+                    dataProduct.push(newProduct);
+                }
+                
+            }else{
                 dataProduct.push(newProduct);
             }
-            
         }else{
-            dataProduct.push(newProduct);
+            dataProduct[tmp]= newProduct;
+            mood = 'create';
+            submit.innerHTML='Create'
+            count.style.display='block'
         }
-
 
 
 
@@ -73,6 +82,7 @@
     }
     // showData
     function showData() {
+        getTotal()
         let table ='';
         for (let i = 0; i < dataProduct.length; i++) {
             table+=`
@@ -85,7 +95,7 @@
             <td>${dataProduct[i].discount}</td>
             <td>${dataProduct[i].total}</td>
             <td>${dataProduct[i].category}</td>
-            <td><button id="update">update</button></td>
+            <td><button onclick="updateData(${i})" id="update">update</button></td>
             <td><button onclick="deleteData(${i})" id="delete">delete</button></td>
         </tr>`
 
@@ -110,4 +120,22 @@
         localStorage.clear()
         dataProduct.splice(0)
         showData()   
+    }
+    // updateData
+    function updateData(i){
+        title.value=dataProduct[i].title;
+        price.value=dataProduct[i].price;
+        taxes.value=dataProduct[i].taxes;
+        ads.value=dataProduct[i].ads;
+        discount.value=dataProduct[i].discount;
+        getTotal()
+        category.value=dataProduct[i].category;
+        count.style.display='none';
+        submit.innerHTML='Update';
+        mood='update'
+        tmp=i;
+        scroll({
+            top:0,
+            behavior:"smooth"
+        })
     }
