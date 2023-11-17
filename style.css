@@ -1,23 +1,27 @@
-*{
+* {
     margin: 0;
     padding: 0;
 }
-body{
+
+body {
     background-color: #222;
     color: white;
     font-family: system-ui;
 }
-.curd{
+
+.curd {
     width: 80%;
     margin: auto;
 }
-.head{
+
+.head {
     margin: 10px 0;
     text-align: center;
     text-transform: uppercase;
 
 }
-input{
+
+input {
     width: 100%;
     height: 30px;
     outline: none;
@@ -28,22 +32,27 @@ input{
     padding: 5px;
     color: white;
 }
-input:focus{
+
+input:focus {
     transform: scale(1.1);
-    background-color: black ;
+    background-color: black;
 }
-.price input{
+
+.price input {
     width: 20%;
 }
-#total{
+
+#total {
     background-color: #a00d02;
     padding: 5px 2px;
     border-radius: 5px;
 }
-#total::before{
+
+#total::before {
     content: 'Total:';
 }
-button{
+
+button {
     width: 100%;
     height: 30px;
     background-color: #390053;
@@ -53,33 +62,42 @@ button{
     border-radius: 20px;
     transition: .5s;
 }
-button:hover{
+
+button:hover {
     background-color: #51025f;
     letter-spacing: 1px;
 }
-.btnSearch{
+
+.btnSearch {
     display: flex;
     justify-content: space-between;
 
 }
-.btnSearch button{
-    width:45%  ;
+
+.btnSearch button {
+    width: 45%;
 }
-#search{
+
+#search {
     margin: 5px 0;
 }
-table{
+
+table {
     width: 100%;
     text-align: center;
-    margin: 10px 0 ;
+    margin: 10px 0;
 
 }
-th{
+
+th {
     text-transform: uppercase;
 }
-th , td{
+
+th,
+td {
     padding: 5px;
 }
-#deleteAllBtn{
+
+#deleteAllBtn {
     margin: 30px 0;
 }

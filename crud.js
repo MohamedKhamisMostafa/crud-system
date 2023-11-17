@@ -6,61 +6,61 @@
     let count = document.getElementById('count')
     let category = document.getElementById('category')
     let submit = document.getElementById('submit')
-    let mood='create';
+    let mood = 'create';
     let tmp;
 
     // get total
-    function getTotal(){
+    function getTotal() {
         if (price.value != '') {
             total.innerHTML = (+price.value + +taxes.value + +ads.value) - +discount.value;
-            total.style.background = '#040'   
-        }else{
-            total.style.background ='#a00d02'
-            total.innerHTML=''
+            total.style.background = '#040'
+        } else {
+            total.style.background = '#a00d02'
+            total.innerHTML = ''
         }
     }
     // creat product 
 
     let dataProduct;
-    if (localStorage.product != null ) {
-        dataProduct= JSON.parse(localStorage.product)
-        
-    }else{
-        dataProduct =[];
+    if (localStorage.product != null) {
+        dataProduct = JSON.parse(localStorage.product)
+
+    } else {
+        dataProduct = [];
     }
-    
-    submit.onclick = function(){
+
+    submit.onclick = function () {
         let newProduct = {
-            title:title.value.toLowerCase(),
-            price:price.value,
-            taxes:taxes.value,
-            ads:ads.value,
-            discount:discount.value,
-            total:total.innerHTML,
-            count:count.value,
-            category:category.value.toLowerCase(),
+            title: title.value.toLowerCase(),
+            price: price.value,
+            taxes: taxes.value,
+            ads: ads.value,
+            discount: discount.value,
+            total: total.innerHTML,
+            count: count.value,
+            category: category.value.toLowerCase(),
         }
 
-        if (mood === 'create'){
-             // repeat 
+        if (mood === 'create') {
+            // repeat 
 
-            if (newProduct.count>1) {
-                for (let i = 0; i < newProduct.count ; i++) {
+            if (newProduct.count > 1) {
+                for (let i = 0; i < newProduct.count; i++) {
                     dataProduct.push(newProduct);
                 }
-                
-            }else{
+
+            } else {
                 dataProduct.push(newProduct);
             }
-        }else{
-            dataProduct[tmp]= newProduct;
+        } else {
+            dataProduct[tmp] = newProduct;
             mood = 'create';
-            submit.innerHTML='Create'
-            count.style.display='block'
+            submit.innerHTML = 'Create'
+            count.style.display = 'block'
         }
 
         // save localStorage
-        localStorage.setItem('product',JSON.stringify(dataProduct))
+        localStorage.setItem('product', JSON.stringify(dataProduct))
         clearData()
         showData()
     }
@@ -72,16 +72,16 @@
         taxes.value = ''
         ads.value = ''
         discount.value = ''
-        total.innerHTML =''
+        total.innerHTML = ''
         count.value = ''
         category.value = ''
     }
     // showData
     function showData() {
         getTotal()
-        let table ='';
+        let table = '';
         for (let i = 0; i < dataProduct.length; i++) {
-            table+=`
+            table += `
         <tr>
             <td>${i}</td>
             <td>${dataProduct[i].title}</td>
@@ -95,67 +95,68 @@
             <td><button onclick="deleteData(${i})" id="delete">delete</button></td>
         </tr>`
 
-            
+
         }
-        document.getElementById('tbody').innerHTML= table;
+        document.getElementById('tbody').innerHTML = table;
         let deleteAllBtn = document.getElementById('deleteAllBtn')
-        if (dataProduct.length>0) {
-            deleteAllBtn.innerHTML='<button onclick="deleteAll()">Delete All</button>'
-            
+        if (dataProduct.length > 0) {
+            deleteAllBtn.innerHTML = '<button onclick="deleteAll()">Delete All</button>'
+
         }
     }
     showData()
     // delete
-    function deleteData(i){
-        dataProduct.splice(i,1)
-        localStorage.product =JSON.stringify(dataProduct);
+    function deleteData(i) {
+        dataProduct.splice(i, 1)
+        localStorage.product = JSON.stringify(dataProduct);
         showData()
     }
     // deleteAllBtn code
     function deleteAll() {
         localStorage.clear()
         dataProduct.splice(0)
-        showData()   
+        showData()
     }
     // updateData
-    function updateData(i){
-        title.value=dataProduct[i].title;
-        price.value=dataProduct[i].price;
-        taxes.value=dataProduct[i].taxes;
-        ads.value=dataProduct[i].ads;
-        discount.value=dataProduct[i].discount;
+    function updateData(i) {
+        title.value = dataProduct[i].title;
+        price.value = dataProduct[i].price;
+        taxes.value = dataProduct[i].taxes;
+        ads.value = dataProduct[i].ads;
+        discount.value = dataProduct[i].discount;
         getTotal()
-        category.value=dataProduct[i].category;
-        count.style.display='none';
-        submit.innerHTML='Update';
-        mood='update'
-        tmp=i;
+        category.value = dataProduct[i].category;
+        count.style.display = 'none';
+        submit.innerHTML = 'Update';
+        mood = 'update'
+        tmp = i;
         scroll({
-            top:0,
-            behavior:"smooth"
+            top: 0,
+            behavior: "smooth"
         })
     }
     // search
     let searchMood = 'title'
-    function getSearchMood(id){
+
+    function getSearchMood(id) {
         let search = document.getElementById(('search'))
-        if(id ==  'searchTitle'){
-            searchMood='title'
-        }else{
-            searchMood='category'
+        if (id == 'searchTitle') {
+            searchMood = 'title'
+        } else {
+            searchMood = 'category'
         }
-        search.placeholder='Search By ' + searchMood;
+        search.placeholder = 'Search By ' + searchMood;
         search.focus()
-        search.value='';    
+        search.value = '';
         showData();
     }
 
     function searchData(value) {
-        let table ='';
-        for (let i = 0; i < dataProduct.length; i++){
-        if (searchMood == 'title'){
-                if(dataProduct[i].title.includes(value.toLowerCase())){
-                    table+=`
+        let table = '';
+        for (let i = 0; i < dataProduct.length; i++) {
+            if (searchMood == 'title') {
+                if (dataProduct[i].title.includes(value.toLowerCase())) {
+                    table += `
                     <tr>
                         <td>${i}</td>
                         <td>${dataProduct[i].title}</td>
@@ -169,12 +170,12 @@
                         <td><button onclick="deleteData(${i})" id="delete">delete</button></td>
                     </tr>`
 
-                }                
-            
-        }else{
-            
-                if(dataProduct[i].category.includes(value.toLowerCase())){
-                    table+=`
+                }
+
+            } else {
+
+                if (dataProduct[i].category.includes(value.toLowerCase())) {
+                    table += `
                     <tr>
                         <td>${i}</td>
                         <td>${dataProduct[i].title}</td>
@@ -188,11 +189,11 @@
                         <td><button onclick="deleteData(${i})" id="delete">delete</button></td>
                     </tr>`
 
-                }                
-            
+                }
 
+
+            }
         }
-    }
-        document.getElementById('tbody').innerHTML= table;
+        document.getElementById('tbody').innerHTML = table;
 
     }

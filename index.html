@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CRUDS</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <div class="curd">
         <!-- start head section -->
@@ -32,7 +34,7 @@
         <!-- start outputs section  -->
         <div class="outputs">
             <div class="searchBlock">
-                <input onkeyup="searchData(this.value)" type="text" id="search"placeholder='search'>
+                <input onkeyup="searchData(this.value)" type="text" id="search" placeholder='search'>
                 <div class="btnSearch">
                     <button onclick="getSearchMood(this.id)" id="searchTitle">Search By Title</button>
                     <button onclick="getSearchMood(this.id)" id="searchCategory">Search By Category</button>
@@ -62,6 +64,7 @@
         <!-- end outputs section  -->
     </div>
     <script src="crud.js"></script>
- 
+
 </body>
+
 </html>
