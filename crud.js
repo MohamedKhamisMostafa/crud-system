@@ -40,8 +40,11 @@
             count: count.value,
             category: category.value.toLowerCase(),
         }
-
-        if (mood === 'create') {
+        if (title.value !=''&&
+        price.value!=''
+        &&category.value!=''
+        &&count.value<=100) {
+            if (mood === 'create') {
             // repeat 
 
             if (newProduct.count > 1) {
@@ -57,11 +60,14 @@
             mood = 'create';
             submit.innerHTML = 'Create'
             count.style.display = 'block'
+        }   
+        clearData()
         }
+
 
         // save localStorage
         localStorage.setItem('product', JSON.stringify(dataProduct))
-        clearData()
+        
         showData()
     }
 
@@ -83,7 +89,7 @@
         for (let i = 0; i < dataProduct.length; i++) {
             table += `
         <tr>
-            <td>${i}</td>
+            <td>${i+1}</td>
             <td>${dataProduct[i].title}</td>
             <td>${dataProduct[i].price}</td>
             <td>${dataProduct[i].taxes}</td>
